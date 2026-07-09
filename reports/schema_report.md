@@ -1,13 +1,10 @@
 # MIG Cement Schema Report
 
-Generated: 2026-07-09 22:35:38
-Database: /home/whizic/UK/AMDARI/MIG_Cement/data/raw/MIG_Cement_Records.db
-
 ## Overview
 
-- Tables discovered: 4
+- Tables discovered: 3
 - Focus: table definitions, field descriptions, date range coverage, record counts, distinct value summaries, and data completeness metrics
-
+- Created Cement_Demand Table
 - Total records across tables: 65793
 
 ## Table: CementTypes
