@@ -1,0 +1,3 @@
+date,site_id,cement_type,planned_pour_tonnes,consumed_tonnes,opening_inventory_tonnes,deliveries_tonnes,closing_inventory_tonnes,rain_mm,avg_temp_c,operation_silo_capacity,region,site_silo_capacity,behavior,variance_percent,has_nulls,has_negative_values,inventory_balance_error,high_consumption_variance,weather_range_error,issue_description
+2022-01-01,SITE_024,CEM_II,64.29,64.29,73.23,36.61,45.56,3.11,16.33,290,East,290,chaotic,0.0,False,False,True,False,False,Inventory balance mismatch
+2022-01-01,SITE_027,CEM_II,12.38,12.38,62.79,13.1,63.52,4.44,10.69,314,North,314,conservative,0.0,False,False,True,False,False,Inventory balance mismatch
