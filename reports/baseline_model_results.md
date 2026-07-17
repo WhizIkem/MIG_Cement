@@ -1,17 +1,24 @@
 # Baseline Model Results
 
-## Model
+## Model Overview
 
-- Model type: SARIMAX
-- Site ID: `SITE_001`
+This report documents the SARIMAX baseline model for cement consumption forecasting.
+
+## Dataset Setup
+
+- Site ID: `SITE_018`
 - Target variable: `consumed_tonnes`
-- Exogenous variables: `planned_pour_tonnes`, `rain_mm`, `avg_temp_c`
-- Forecast horizon: 56 days / 8 weeks
+- Exogenous variables:
+  - `planned_pour_tonnes`
+  - `rain_mm`
+  - `avg_temp_c`
 - Training observations: 876
-- Test observations used for forecast: 56
+- Forecast/test observations: 56
+- Forecast horizon: 56 days
 
 ## Hyperparameters
 
+- Model type: `SARIMAX`
 - order: `(0, 0, 2)`
 - seasonal_order: `(0, 2, 2, 7)`
 - AIC: 6696.3190
@@ -22,8 +29,8 @@
 
 | Metric | Value |
 | --- | ---: |
-| MAPE | 53.88% |
-| RMSE | 10.48 |
+| MAPE | 55.57% |
+| RMSE | 13.23 tonnes |
 
 ## Forecast Visualization
 
@@ -38,6 +45,5 @@
 
 ## Artifacts
 
-- Serialized model: `sarimax_model.pkl`
 - Forecast visualization: `sarimax_forecast.png`
-- Forecast values: `sarimax_forecast_values.csv`
+- Report: `baseline_model_results.md`
