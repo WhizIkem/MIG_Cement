@@ -1,0 +1,40 @@
+# Ignore data files and folders
+/data/
+
+# Ignore large datasets and database files
+*.db
+*.sqlite
+*.sqlite3
+*.csv
+*.parquet
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.npz
+*.npy
+
+# Ignore notebooks and reports
+*.ipynb
+reports/
+
+# Ignore Python cache and environment artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+
+# Ignore generated plots and media
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.pdf
+*.zip
+*.tar
+*.tar.gz
+*.gz
