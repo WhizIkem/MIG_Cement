@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import GradientBoostingRegressor
 
+# Metrics for evaluating model performance
 def engineer_features(df, site_id):
   site_df = df[df['site_id'] == site_id].copy().sort_values(by='date')
   site_df.set_index('date', inplace=True)
@@ -34,7 +35,7 @@ def engineer_features(df, site_id):
   site_df.dropna(inplace=True)
   return site_df
 
-
+# Training function for gradient boosting forecast model
 def train_gb_forecast(site_df):
   features = ['planned_pour_tonnes', 'rain_mm', 'avg_temp_c',
        'lag_1', 'lag_3', 'lag_7', 'rolling_mean_3', 'rolling_std_7', 
@@ -63,7 +64,7 @@ def train_gb_forecast(site_df):
 
   return gb, test_results
 
-
+# Build forecast horizon function
 def build_forecast_horizon(site_df, model, horizon_days=56):
   """
   Build a forward demand forecast horizon using recursive predictions.
@@ -171,7 +172,7 @@ def build_forecast_horizon(site_df, model, horizon_days=56):
   horizon_df = pd.DataFrame(future_rows).set_index('date')
   return horizon_df
 
-
+# Define a function to simulate inventory levels and generate delivery recommendations
 def simulate_inventory(
   test_results, 
   site_meta, 
@@ -257,7 +258,7 @@ def simulate_inventory(
 
   return df_sim
 
-
+# Define a function to build site metadata from the raw data
 def build_site_metadata_from_data(
     df,
     initial_inventory_pct=0.60,
@@ -295,7 +296,7 @@ def build_site_metadata_from_data(
 
     return site_metadata
 
-
+# Define a function to generate default "what-if" scenarios for planning stress tests
 def get_default_what_if_scenarios(base_lead_time_days=2, delayed_extra_days=2):
   """
   Convenience scenario set for planning stress tests.
@@ -310,7 +311,7 @@ def get_default_what_if_scenarios(base_lead_time_days=2, delayed_extra_days=2):
     {'scenario': 'delayed_deliveries', 'demand_multiplier': 1.0, 'lead_time_days': delayed_lead_time_days},
   ]
 
-
+# Define a function to normalize user-provided scenario configs into a strict internal format
 def _normalize_scenario_configs(scenario_configs, base_lead_time_days=2):
   """
   Normalize user-provided scenario configs into a strict internal format.
@@ -354,7 +355,7 @@ def _normalize_scenario_configs(scenario_configs, base_lead_time_days=2):
 
   return normalized
 
-
+# Define a function to enrich simulation results with additional metrics
 def _enrich_simulation_metrics(sim_results, lead_time_days):
   """
   Add scenario/site-level metrics and row-level coverage days.
@@ -391,6 +392,7 @@ def _enrich_simulation_metrics(sim_results, lead_time_days):
 
   return enriched
 
+# Define the main pipeline function to run the entire process for all sites and scenarios
 def run_pipeline(
   df,
   site_metadata=None,
