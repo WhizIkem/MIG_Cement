@@ -19,7 +19,11 @@ kpi_summary = load_kpi_summary('../data/processed/MIG_kpi_summary.csv')
 results_df = load_results_df('../data/processed/cement_forecast_results.parquet')
 
 # Ensure correct data types for date columns
-scenario_options = sorted(results_df['scenario'].dropna().unique())
+scenario_options = sorted(
+    results_df['scenario']
+    .dropna()
+    .unique()
+    )
 default_scenario = 'baseline' if 'baseline' in scenario_options else scenario_options[0]
 min_date, max_date = get_date_bounds(results_df)
 
