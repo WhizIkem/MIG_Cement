@@ -1,3 +1,6 @@
+
+
+# Report builder for MIG Cement KPI analysis
 def build_kpi_report(kpi_summary, problem_sites, output_path="../reports/kpi_analysis.html"):
     total_sites = kpi_summary["site_id"].nunique()
     problem_sites_count = problem_sites["site_id"].nunique()
