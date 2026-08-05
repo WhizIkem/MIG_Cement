@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 
-
+# Define a function to engineer features for a given site
 def engineer_features(df, site_id):
   site_df = df[df['site_id'] == site_id].copy().sort_values(by='date')
   site_df.set_index('date', inplace=True)
