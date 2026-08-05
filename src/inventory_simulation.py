@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 
+# Define a function to build the simulation input dataframe from test features and forecasted values
 def build_simulation_input(X_test, forecast, rain_col="rain_mm"):
     """
     Build the simulation input dataframe from test features and forecasted values.
@@ -15,6 +16,7 @@ def build_simulation_input(X_test, forecast, rain_col="rain_mm"):
 
     return df_sim.sort_values(by="date").reset_index(drop=True)
 
+# Define a function to simulate inventory levels and generate delivery recommendations
 def simulate_inventory(
     df_sim,
     initial_inventory,
@@ -76,6 +78,7 @@ def simulate_inventory(
 
     return df_sim
 
+# Define a function to simulate inventory for all sites based on their forecasts and raw data
 def simulate_inventory_all_sites(
     predictions_df,
     raw_df,
@@ -149,7 +152,7 @@ def simulate_inventory_all_sites(
 
     return pd.concat(all_inventory_simulations, ignore_index=True)
 
-
+# Define a function to summarize inventory metrics for each site
 def summarize_inventory_metrics(
     inventory_simulations_df,
     site_col="site_id",
