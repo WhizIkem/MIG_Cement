@@ -4,6 +4,7 @@ import sys
 
 import pandas as pd
 
+# Add the project root to sys.path to allow imports from src
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.append(str(PROJECT_ROOT))
@@ -15,7 +16,7 @@ from src.pipeline_gb import (
     run_pipeline,
 )
 
-
+# Utility functions for the dashboard
 @lru_cache(maxsize=1)
 def _load_kpi_summary_cached(csv_path):
     df = pd.read_csv(csv_path)
@@ -25,11 +26,11 @@ def _load_kpi_summary_cached(csv_path):
         df['overcapacity_pct'] = df['overcapacity_pct'].astype(float)
     return df
 
-
+# Load KPI summary with caching to avoid repeated reads from disk
 def load_kpi_summary(csv_path='../data/processed/MIG_kpi_summary.csv'):
     return _load_kpi_summary_cached(csv_path).copy()
 
-
+# Load results DataFrame with caching to avoid repeated reads from disk
 @lru_cache(maxsize=4)
 def _load_results_cached(parquet_path):
     df = pd.read_parquet(parquet_path)
@@ -42,11 +43,11 @@ def _load_results_cached(parquet_path):
         df['scenario_lead_time_days'] = 2
     return df
 
-
+# Load results DataFrame with caching to avoid repeated reads from disk
 def load_results_df(parquet_path='../data/processed/cement_forecast_results.parquet'):
     return _load_results_cached(parquet_path).copy()
 
-
+# Generate forecasts on demand with caching to avoid repeated computations
 @lru_cache(maxsize=8)
 def generate_forecasts_on_demand(
     db_path='../data/raw/MIG_Cement_Records.db',
@@ -73,15 +74,15 @@ def generate_forecasts_on_demand(
         scenario_configs=scenario_configs,
     )
 
-
+# Utility functions for the dashboard
 def format_scenario_label(scenario_name):
     return str(scenario_name).replace('_', ' ').title()
 
-
+# Utility function to get the date bounds of the results DataFrame
 def get_date_bounds(results_df):
     return results_df['date'].min(), results_df['date'].max()
 
-
+# Utility function to filter results DataFrame based on site_id, scenario, and optional date range
 def filter_results(results_df, site_id, scenario, start_date=None, end_date=None):
     filtered = results_df[
         (results_df['site_id'] == site_id) & (results_df['scenario'] == scenario)
