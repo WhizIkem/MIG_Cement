@@ -27,8 +27,6 @@ This project delivers a full ML pipeline and interactive dashboard to shift from
 |---|---|---|---|
 | Avg. MAPE |22.97% | 3.14% | **−86.33%** |
 | Avg. RMSE | 7.22 tonnes | 1.23 tonnes | **−82.96%** |
-| Sites improved (MAPE) | — | 27 / 30 | — |
-| Sites improved (RMSE) | — | 26 / 30 | — |
 
 ### Business Value
 - **Reduced emergency replenishment** costs through proactive reorder alerts
@@ -152,6 +150,6 @@ python schema_report.py
 |---|---|
 | Data storage | SQLite |
 | Data processing | Python, Pandas, NumPy |
-| Modelling | Scikit-learn, XGBoost, Statsmodels (SARIMAX) |
+| Modelling | Scikit-learn, Gradient Boosting, Statsmodels (SARIMAX) |
 | Dashboard | Plotly Dash |
 | Notebooks | Jupyter |
