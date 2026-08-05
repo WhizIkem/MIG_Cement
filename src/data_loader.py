@@ -30,6 +30,8 @@ def load_cement_data(db_path="../data/raw/MIG_Cement_Records.db"):
   conn.close() # Close the database connection after loading the data
   
   # Convert date column from text into pandas datetime format.
-  df["date"] = pd.to_datetime(df['date'])
+  df["date"] = pd.to_datetime(
+    df['date']
+    )
   
   return df # return the final cleaned analysis
